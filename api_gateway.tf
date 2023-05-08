@@ -115,14 +115,14 @@ resource "aws_api_gateway_usage_plan" "shirt_color" {
 
   api_stages {
     api_id = aws_api_gateway_rest_api.shirt_color_api.id
-    stage = aws_api_gateway_stage.shirt_color.stage_name
+    stage  = aws_api_gateway_stage.shirt_color.stage_name
   }
 }
 
 # Associate the usage plan with the API key
 resource "aws_api_gateway_usage_plan_key" "shirt_color" {
-  key_id = aws_api_gateway_api_key.shirt_color.id
-  key_type = "API_KEY"
+  key_id        = aws_api_gateway_api_key.shirt_color.id
+  key_type      = "API_KEY"
   usage_plan_id = aws_api_gateway_usage_plan.shirt_color.id
 }
 

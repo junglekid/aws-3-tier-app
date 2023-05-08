@@ -1,5 +1,5 @@
 output "api_gateway_api_key" {
-  value = aws_api_gateway_api_key.shirt_color.value
+  value     = aws_api_gateway_api_key.shirt_color.value
   sensitive = true
 }
 

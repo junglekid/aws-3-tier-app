@@ -1,8 +1,8 @@
 # Create a DynamoDB table with server-side encryption
 resource "aws_dynamodb_table" "shirt_color" {
-  name           = var.aws_dynamodb_table_name
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "Color"
+  name         = var.aws_dynamodb_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "Color"
 
   attribute {
     name = "Color"
@@ -48,7 +48,7 @@ resource "aws_dynamodb_table_item" "shirt_color" {
   hash_key   = aws_dynamodb_table.shirt_color.hash_key
 
   item = jsonencode({
-     "Color" : {
+    "Color" : {
       "S" : each.key
     },
   })

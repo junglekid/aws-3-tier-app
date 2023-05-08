@@ -40,21 +40,11 @@ resource "aws_iam_role_policy_attachment" "shirt_color" {
 }
 
 # Grant API Gateway permission to invoke the Lambda function
-resource "aws_lambda_permission" "get_shirt_color" {
-  statement_id  = var.aws_lambda_permission_get_shirt_color_statement_id
+resource "aws_lambda_permission" "apigw" {
+  statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.shirt_color.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${aws_api_gateway_rest_api.shirt_color_api.execution_arn}/*/${aws_api_gateway_method.get_shirt_color.http_method}${aws_api_gateway_resource.get_shirt_color_resource.path}"
-}
-
-# Grant API Gateway permission to invoke the Lambda function
-resource "aws_lambda_permission" "add_shirt_color" {
-  statement_id  = var.aws_lambda_permission_add_shirt_color_statement_id
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.shirt_color.function_name
-  principal     = "apigateway.amazonaws.com"
-
-  source_arn = "${aws_api_gateway_rest_api.shirt_color_api.execution_arn}/*/${aws_api_gateway_method.add_shirt_color.http_method}${aws_api_gateway_resource.add_shirt_color_resource.path}"
+  source_arn = "${aws_api_gateway_rest_api.shirt_color_api.execution_arn}/*/*"
 }
