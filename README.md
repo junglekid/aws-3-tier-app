@@ -6,9 +6,15 @@
 * API Gateway deployments
 * DynamoDB Tables and populate table
 * IAM policies and roles
-## Set variables in variables.tf
-* my_name
+## Set tags in locals.tf
 * tags
+## Update variables in variables.tf
+* tags
+## Update S3 Backend in provider.tf
+* bucket
+* key
+* profile
+* dynamodb_table
 ## Run Terraform
 ```
 terraform init

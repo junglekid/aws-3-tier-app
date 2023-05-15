@@ -1,4 +1,12 @@
 terraform {
+  backend "s3" {
+    bucket         = "dallin-tf-backend" 
+    key            = "dallin-3-tier-app"
+    region         = "us-west-2"
+    profile        = "bsisandbox"
+    encrypt        = true
+    dynamodb_table = "dallin-tf-backend"
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -17,13 +25,15 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = var.aws_profile
+  region  = local.aws_region
+  profile = local.aws_profile
 
   default_tags {
     tags = {
-      Provisoner = "Terraform"
-      Owner      = local.owner
+      Provisoner  = "Terraform"
+      Owner       = local.owner
+      Environment = local.environment
+      Project     = local.project
     }
   }
 }

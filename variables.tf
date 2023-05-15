@@ -1,15 +1,3 @@
-variable "aws_region" {
-  type        = string
-  description = "AWS Region to use"
-  default     = "us-west-2"
-}
-
-variable "aws_profile" {
-  type        = string
-  description = "AWS Profile to use"
-  default     = "bsisandbox"
-}
-
 variable "custom_domain_name" {
   type        = string
   description = "Custom Domain Name to use with API Gateway"
