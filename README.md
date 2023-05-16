@@ -24,10 +24,6 @@ terraform apply plan.out
 ```
 ## Test API Gateway > Lambda > DynamoDB
 ```
-aws sqs \
-  --region <REGION> send-message \
-  --queue-url <SQS_URL> \
-  --message-body '{"number": <ANY_NUMBER>}'
 API_KEY=$(terraform output -raw api_gateway_api_key)
 API_URL=$(terraform output -raw url_get-shirt-color)
 curl -sS -H "x-api-key: $API_KEY" "$API_URL" | jq
@@ -36,7 +32,6 @@ curl -sS -H "x-api-key: $API_KEY" "$API_URL" | jq
 ```
 API_KEY=$(terraform output -raw api_gateway_api_key)
 API_URL=$(terraform output -raw url_add-shirt-color)
-
 curl -sS -X POST -H "x-api-key: $API_KEY" \
   -H 'Content-Type: application/json' \
   -d '{ "color": "Pink" }' \
