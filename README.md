@@ -22,13 +22,13 @@ terraform validate
 terraform plan -out=plan.out
 terraform apply plan.out
 ```
-## Test API Gateway > Lambda > DynamoDB
+## Test GET Request with API Gateway > Lambda > DynamoDB
 ```
 API_KEY=$(terraform output -raw api_gateway_api_key)
 API_URL=$(terraform output -raw url_get-shirt-color)
 curl -sS -H "x-api-key: $API_KEY" "$API_URL" | jq
 ```
-## Test API Gateway > Lambda > DynamoDB
+## Test POST Request with API Gateway > Lambda > DynamoDB
 ```
 API_KEY=$(terraform output -raw api_gateway_api_key)
 API_URL=$(terraform output -raw url_add-shirt-color)
